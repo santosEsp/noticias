@@ -120,5 +120,8 @@
       }
     }
   },
-  "defaultProject": "noticias"
+  "defaultProject": "noticias",
+  "cli": {
+    "analytics": false
+  }
 }

@@ -1,0 +1,40 @@
+<div class="container mt-4">
+    <div class="row">
+        <div class="col">
+            <select class="form-select" aria-label="Default select example">
+      <option selected>País</option>
+      <option value="1">México</option>
+      <option value="2">Argentina</option>
+      <option value="3">Colombia</option>
+      <option value="3">Estados Unidos</option>
+
+    </select>
+        </div>
+        <div class="col">
+            <select class="form-select" aria-label="Default select example">
+      <option selected>Categoría</option>
+      <option value="1">One</option>
+      <option value="2">Two</option>
+      <option value="3">Three</option>
+    </select>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-4">
+
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col" *ngFor="let noticia of noticias">
+            <div class="card">
+                <img src="{{noticia.urlToImage}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{noticia.title}}</h5>
+                    <p>Publicado: {{noticia.publishedAt | date}}</p>
+                    <p class="card-text">{{noticia.description}}</p>
+                    <p>Por: {{noticia.author}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
