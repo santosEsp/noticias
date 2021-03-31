@@ -1,22 +1,17 @@
 <div class="container mt-4">
     <div class="row">
         <div class="col">
-            <select class="form-select" aria-label="Default select example">
-      <option selected>País</option>
-      <option value="1">México</option>
-      <option value="2">Argentina</option>
-      <option value="3">Colombia</option>
-      <option value="3">Estados Unidos</option>
-
+            <select class="form-select" aria-label="Default select example" (change)="filterChanged($event.target.value)">
+      <option *ngFor="let type of filterCountry" [value]="type.value">{{type.display}}</option>
+      
     </select>
         </div>
         <div class="col">
-            <select class="form-select" aria-label="Default select example">
-      <option selected>Categoría</option>
-      <option value="1">One</option>
-      <option value="2">Two</option>
-      <option value="3">Three</option>
+            <select class="form-select" aria-label="Default select example" (change)="filterChangedCategory($event.target.value)">
+      <option *ngFor="let type of filterCategory" [value]="type.value">{{type.display}}</option>
+      
     </select>
+
         </div>
     </div>
 </div>

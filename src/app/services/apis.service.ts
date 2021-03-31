@@ -62,5 +62,17 @@ export class ApisService {
       );
   }
 
-  
+  categoriaPais(country: string, category: string){
+    let url = "https://newsapi.org/v2/top-headlines?country="+country+"&category="+category+"&apiKey=fd04ad13598e4a49bd2d641b47597158";
+    console.log("URL categoría",url);
+    return this.http.get(url)
+      .pipe(
+        map(
+          (resp: any) => {
+            return resp.articles;
+          }
+        )
+      );
+  }
+
 }

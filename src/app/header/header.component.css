@@ -7,14 +7,18 @@
 .Titulo {
     width: 114px;
     height: 41px;
-    margin: 20px 354.5px 19px 423.5px;
-    font-family: Avenir;
+    margin: auto;
+    font-family: Arial;
     font-size: 30px;
-    font-weight: 900;
+    font-weight: 700;
     font-stretch: normal;
     font-style: normal;
     line-height: normal;
     letter-spacing: normal;
     text-align: center;
-    color: var(--bambu);
+    color: #0c3c4a;
+}
+
+ul {
+    margin: auto;
 }
