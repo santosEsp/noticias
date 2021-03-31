@@ -11,6 +11,8 @@ export class HomeComponent implements OnInit {
   noticias: any [] = [];
   country: string;
   category: string; 
+ 
+
   constructor(private apiService: ApisService) { }
 
   ngOnInit(): void {
@@ -145,4 +147,5 @@ export class HomeComponent implements OnInit {
     this.apiService.categoriaPais(country, category).subscribe(lista => {this.noticias = lista, console.log('Noticias', this.noticias);});
   }
 
+  
 }
