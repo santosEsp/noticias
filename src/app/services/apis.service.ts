@@ -7,10 +7,13 @@ import { map } from 'rxjs/Operators';
 })
 export class ApisService {
 
+  
   constructor(private http: HttpClient) { }
+  
+  
 
   noticiasMexico(): any {
-    let url = "https://newsapi.org/v2/top-headlines?country=mx&apiKey=fd04ad13598e4a49bd2d641b47597158";
+    let url = "https://newsapi.org/v2/top-headlines?country=mx&apiKey=a37ee538325f48cfb3f8d780820443e9";
 
     return this.http.get(url)
       .pipe(
@@ -24,7 +27,7 @@ export class ApisService {
 
 
   noticiasArgentina(): any {
-    let url = "https://newsapi.org/v2/top-headlines?country=ar&apiKey=fd04ad13598e4a49bd2d641b47597158";
+    let url = "https://newsapi.org/v2/top-headlines?country=ar&apiKey=a37ee538325f48cfb3f8d780820443e9";
 
     return this.http.get(url)
       .pipe(
@@ -37,7 +40,7 @@ export class ApisService {
   }
 
   noticiasColombia(): any {
-    let url = "https://newsapi.org/v2/top-headlines?country=co&apiKey=fd04ad13598e4a49bd2d641b47597158";
+    let url = "https://newsapi.org/v2/top-headlines?country=co&apiKey=a37ee538325f48cfb3f8d780820443e9";
 
     return this.http.get(url)
       .pipe(
@@ -50,7 +53,7 @@ export class ApisService {
   }
 
   noticiasEU(): any {
-    let url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=fd04ad13598e4a49bd2d641b47597158";
+    let url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=a37ee538325f48cfb3f8d780820443e9";
 
     return this.http.get(url)
       .pipe(
@@ -63,7 +66,8 @@ export class ApisService {
   }
 
   categoriaPais(country: string, category: string){
-    let url = "https://newsapi.org/v2/top-headlines?country="+country+"&category="+category+"&apiKey=fd04ad13598e4a49bd2d641b47597158";
+    console.log('Service categoria:', country, category);
+    let url = "https://newsapi.org/v2/top-headlines?country="+country+"&category="+category+"&apiKey=a37ee538325f48cfb3f8d780820443e9";
     console.log("URL categoría",url);
     return this.http.get(url)
       .pipe(

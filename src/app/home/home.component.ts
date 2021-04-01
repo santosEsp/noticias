@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ApisService} from '../services/apis.service';
+import { PaisSeleccionado } from '../models/paisSeleccionado';
+import { CategoriaSeleccionada } from '../models/categoriaSeleccionada';
 
 @Component({
   selector: 'app-home',
@@ -11,18 +13,40 @@ export class HomeComponent implements OnInit {
   noticias: any [] = [];
   country: string;
   category: string; 
+  seleccionado = new PaisSeleccionado();
+  catSeleccionado = new CategoriaSeleccionada();
  
 
   constructor(private apiService: ApisService) { }
 
   ngOnInit(): void {
-    this.noticiasMexico();
-    this.country = "mx";
+
+    if(localStorage.getItem('paisValue')){
+
+      if(localStorage.getItem('catValue')){
+        console.log("paisValue y catValue True" );
+        
+        this.seleccionado.paisValue= localStorage.getItem('paisValue');
+        this.filterChangedCategory(this.seleccionado.paisValue);
+      } 
+
+      else{
+        this.seleccionado = {paisValue: localStorage.getItem('paisValue')}
+        this.filterChanged(this.seleccionado.paisValue);
+      }
+      
+    }
+    else{
+      this.seleccionado = {paisValue: '1'};
+      this.filterChanged(this.seleccionado.paisValue);
+
+    }
+
   }
   // filtrado por país
 
   public filterCountry = [
-    { value: '1', display: 'Mexico' },
+    { value: '1', display: 'México' },
     { value: '2', display: 'Argentina' },
     { value: '3', display: 'Colombia' },
     { value: '4', display: 'Estados Unidos' }
@@ -45,32 +69,45 @@ export class HomeComponent implements OnInit {
     
     switch(selectedValue) { 
       case '1': { 
-        this.country = "mx";
-        console.log('value is ', selectedValue);
+        localStorage.setItem('nomPais', 'mx');
+        localStorage.setItem('paisValue', '1');
         this.noticiasMexico();
+        this.catSeleccionado = new CategoriaSeleccionada();
          break; 
       } 
       case '2': { 
-        this.country = "ar";
+        
+        localStorage.setItem('nomPais', 'ar');
+        localStorage.setItem('paisValue', '2');
         console.log('value is ', selectedValue);
         this.noticiasArgentina();
+        this.catSeleccionado = new CategoriaSeleccionada();
          break; 
       } 
 
       case '3': { 
-        this.country = "co";
+        
+        localStorage.setItem('nomPais', 'co');
+        localStorage.setItem('paisValue', '3');
         console.log('value is ', selectedValue);
         this.noticiasColombia();
+        this.catSeleccionado = new CategoriaSeleccionada();
         break; 
      } 
      case '4': { 
-      this.country = "us";
+      
+      localStorage.setItem('nomPais', 'us');
+      localStorage.setItem('paisValue', '4');
       console.log('value is ', selectedValue);
       this.noticiasEU();
+      this.catSeleccionado = new CategoriaSeleccionada();
         break; 
      } 
-      default: { 
+      default: {
+        localStorage.setItem('nomPais', 'mx');
+        localStorage.setItem('paisValue', '1');
         this.noticiasMexico();
+        this.catSeleccionado = new CategoriaSeleccionada();
          break; 
       } 
    } 
@@ -78,50 +115,56 @@ export class HomeComponent implements OnInit {
   }
 
   filterChangedCategory(selectedValue:string){
-    console.log('value category is ', selectedValue);
+    
     switch(selectedValue) { 
       case '1': { 
-        this.category = "business";
-        console.log("country: ", this.country,'Category is: ', this.category);
-        this.noticiasFiltro(this.country, this.category);
+        localStorage.setItem('category','business');
+        localStorage.setItem('catValue', '1');
+        this.noticiasFiltro(localStorage.getItem('nomPais'), localStorage.getItem('category'));
          break; 
       } 
       case '2': { 
-        this.category = "entertainment";
-        console.log("country: ", this.country,'Category is: ', this.category);
-        this.noticiasFiltro(this.country, this.category);
+        
+        localStorage.setItem('category','entertainment');
+        localStorage.setItem('catValue', '2');
+        this.noticiasFiltro(localStorage.getItem('nomPais'), localStorage.getItem('category'));
          break; 
       } 
 
       case '3': { 
-        this.category = "health";
-        console.log("country: ", this.country,'Category is: ', this.category);
-        this.noticiasFiltro(this.country, this.category);
+        
+        localStorage.setItem('category','health');
+        localStorage.setItem('catValue', '3');
+        this.noticiasFiltro(localStorage.getItem('nomPais'), localStorage.getItem('category'));
         break; 
      } 
      case '4': { 
-      this.category = "science";
-      console.log("country: ", this.country,'Category is: ', this.category);
-        this.noticiasFiltro(this.country, this.category);
+      
+      localStorage.setItem('category','science');
+      localStorage.setItem('catValue', '4');
+      this.noticiasFiltro(localStorage.getItem('nomPais'), localStorage.getItem('category'));
         break; 
      } 
      case '5': { 
-      this.category = "sports";
-      console.log("country: ", this.country,'Category is: ', this.category);
-        this.noticiasFiltro(this.country, this.category);
+      
+      localStorage.setItem('category','sports');
+      localStorage.setItem('catValue', '5');
+      this.noticiasFiltro(localStorage.getItem('nomPais'), localStorage.getItem('category'));
        break; 
     } 
 
     case '6': { 
-      this.category = "technology";
-      console.log("country: ", this.country,'Category is: ', this.category);
-      this.noticiasFiltro(this.country, this.category);
+      
+      localStorage.setItem('category','technology');
+      localStorage.setItem('catValue', '6');
+      this.noticiasFiltro(localStorage.getItem('nomPais'), localStorage.getItem('category'));
       break; 
    } 
       default: { 
-        this.category = "business";
-        console.log("country: ", this.country,'Category is: ', this.category);
-        this.noticiasFiltro(this.country, this.category);
+        
+        localStorage.setItem('category','business');
+        localStorage.setItem('catValue', '1');
+        this.noticiasFiltro(localStorage.getItem('nomPais'), localStorage.getItem('category'));
          break; 
       } 
    } 
@@ -144,6 +187,8 @@ export class HomeComponent implements OnInit {
 
 
   noticiasFiltro(country: string, category: string){
+    console.log('Recibidos a noticias filtro',country, category);
+    this.catSeleccionado.catValue = localStorage.getItem('catValue');
     this.apiService.categoriaPais(country, category).subscribe(lista => {this.noticias = lista, console.log('Noticias', this.noticias);});
   }
 

@@ -60,6 +60,10 @@ export class LoginService {
   logout() { 
     localStorage.removeItem('token');
     localStorage.removeItem('email');
+    localStorage.removeItem('paisValue');
+    localStorage.removeItem('category');
+    localStorage.removeItem('catValue');
+    localStorage.removeItem('nomPais');
   }
 
   guardarTkn(token: string, email: string): any {
